@@ -1,4 +1,5 @@
 # Django settings for tutorial project.
+import dj_database_url
 import os
 APP_ENVIRONMENT = os.environ.get('APP_ENVIRONMENT')
 
@@ -12,16 +13,8 @@ MANAGERS = ADMINS
 
 
 if APP_ENVIRONMENT == 'PRODUCTION':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': '',
-            'USER': '',
-            'PASSWORD': '',
-            'HOST': '',
-            'PORT': '',
-        }
-    }
+    DATABASES = {}
+    DATABASES['default'] = dj_database_url.config()
 else:
     DATABASES = {
         'default': {
